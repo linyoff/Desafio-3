@@ -5,7 +5,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    navigate('/login'); // Redireciona para a tela de login
+    navigate('/login');
   };
 
   return (
