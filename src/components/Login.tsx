@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import '../syles/Login.css';
 import { Mail, Lock } from 'react-feather';
 
+//interface que vai definir as props q vão atualizar o estado de autenticação
 interface LoginProps {
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -51,7 +52,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
 
       {/*form de login por email e senha*/}
       <form className="login-form" onSubmit={handleEmailSignIn}>
-      <div className="input-container">
+        <div className="input-container">
           <Mail className="icon" size={20} /> {/* Ícone de email */}
           <input
             className="input-email"
@@ -75,16 +76,16 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
         </div>
         <p>Forgot Password</p>
         <button className="login-button" type="submit">Sign In</button>
+
+        {/*botão de login com google*/}
+        <button className="google-button" onClick={handleGoogleSignIn}>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Icon" className="google-icon" /> {/* Ícone do Google */}
+          Sign in with Google
+        </button>
+
       </form>
 
       {error && <p className="error-message">{error}</p>} {/*mensagem de erro*/}
-
-
-      {/*botão de login com google*/}
-      <button className="google-button" onClick={handleGoogleSignIn}>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Icon" className="google-icon" /> {/* Ícone do Google */}
-        Sign in with Google
-      </button>
 
       <p className="signup-text">Didn’t have any account? <a>Sign Up here</a></p>
 

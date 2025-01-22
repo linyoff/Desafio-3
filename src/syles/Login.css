@@ -20,6 +20,13 @@ h2 {
     line-height: 25px;
 }
 
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .input-container {
     position: relative;
     margin-bottom: 20px;
@@ -29,10 +36,14 @@ h2 {
     width: 100%;
     padding: 10px;
     padding-left: 35px; 
-    border: 1px solid #ccc;
+    border: 1px solid var(--colorsGreyLight_1);
     border-radius: 5px;
   }
   
+  .input-container input:hover {
+    border: 1px solid var(--colorsGreenDark);
+  }
+
   .input-container .icon {
     position: absolute;
     left: 10px; 
@@ -42,7 +53,6 @@ h2 {
     color: var(--colorsGrey);
   }
   
-  /* Buttons */
 .login-button {
     width: 100%;
     padding: 10px;
@@ -76,8 +86,7 @@ h2 {
     width: 20px;
     height: 20px;
   }
-  
-  /* Footer */
+ 
   .signup-text {
     margin-top: 20px;
     font-size: 0.9rem;
