@@ -1,109 +1,129 @@
 .login-page {
-    text-align: center;
-    color: var(--colorsWhite);
-    min-height: 100vh;
-    background: 
-        linear-gradient(rgba(18, 80, 56, 1), rgba(22, 199, 130, 0)), 
-        url('/src/images/background.png') center/cover no-repeat;
-    background-size: cover;   
-    background-position: center;
-}
-
-h1 {
-    letter-spacing: 0.04rem;
-    font-size: 3.19rem;
-}
-
-h2 {
-    letter-spacing: 0.04rem;
-    font-size: 0.8rem;
-    line-height: 25px;
-}
-
-.login-form {
   display: flex;
+  font-weight: 600;
+  letter-spacing: 0.03rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  color: var(--colorsWhite);
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(18, 80, 56, 1), rgba(22, 199, 130, 0)),
+    url('/src/images/background.png') center/cover no-repeat;
+}
+
+h1 {
+  letter-spacing: 0.04rem;
+  font-size: 3.19rem;
+}
+
+h2 {
+  letter-spacing: 0.04rem;
+  font-size: 0.8rem;
+  line-height: 25px;
+}
+
+.text-header {
+  margin-bottom: 35px;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 360px;
+  margin: 50px 0;
 }
 
 .input-container {
-    position: relative;
-    margin-bottom: 20px;
-  }
-  
-  .input-container input {
-    width: 100%;
-    padding: 10px;
-    padding-left: 35px; 
-    border: 1px solid var(--colorsGreyLight_1);
-    border-radius: 5px;
-  }
-  
-  .input-container input:hover {
-    border: 1px solid var(--colorsGreenDark);
-  }
+  position: relative;
+  margin-top: 20px;
+}
 
-  .input-container .icon {
-    position: absolute;
-    left: 10px; 
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: var(--colorsGrey);
-  }
-  
+.input-container input {
+  width: 100%;
+  height: 55px;
+  padding: 10px 35px;
+  border: 1px solid var(--colorsGreyLight_1);
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.input-container input:hover {
+  border: 1px solid var(--colorsGreenDark);
+}
+
+.input-container .icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--colorsGrey);
+}
+
 .login-button {
-    width: 100%;
-    padding: 10px;
-    background-color: var(--colorsGreen);
-    border: none;
-    border-radius: 5px;
-    color: var(--colorsWhite);
-    font-size: 1rem;
-    cursor: pointer;
-    margin-bottom: 15px;
-  }
-  
-  .login-button:hover {
-    background-color: var(--colorsGreenDark);
-  }
-  
-  .google-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    background-color: transparent;
-    color: var(--colorsWhite);
-    border: none;
-    padding: 15px;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  
-  .google-button img {
-    width: 20px;
-    height: 20px;
-  }
- 
-  .signup-text {
-    margin-top: 20px;
-    font-size: 0.9rem;
-  }
-  
-  .signup-text a {
-    color: var(--colorsGreen);
-    text-decoration: none;
-  }
-  
-  .signup-text a:hover {
-    text-decoration: underline;
-  }
+  width: 100%;
+  height: 55px;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: var(--colorsGreen);
+  border: none;
+  border-radius: 10px;
+  color: var(--colorsWhite);
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 40px;
+  font-weight: bold;
+}
 
-  .error-message{
-    color: var(--colorError);
-  }
+.login-button:hover {
+  background-color: var(--colorsGreenDark);
+}
+
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  background-color: transparent;
+  color: var(--colorsWhite);
+  border: none;
+  padding: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.google-button img {
+  width: 25px;
+  height: 25px;
+}
+
+.signup-text {
+  margin-top: 30px;
+  font-size: 0.9rem;
+}
+
+.signup-text a {
+  color: var(--colorsGreen);
+  text-decoration: none;
+}
+
+.signup-text a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  margin: 0;
+  background-color: var(--colorsGrey);
+  color: var(--colorError);
+}
 
 /*desktop*/
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+  .login-form {
+    margin: 0 auto;
+  }
+}

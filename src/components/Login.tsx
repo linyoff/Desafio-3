@@ -1,40 +1,62 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, googleProvider, signInWithPopup } from "../../config/config";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import '../syles/Login.css';
 import { Mail, Lock } from 'react-feather';
 
-//interface que vai definir as props q vão atualizar o estado de autenticação
+//interface que vai definir as props q vao atualizar o estado de autenticação
 interface LoginProps {
+  //recebe o gerenciador de estado
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+//criação do component funcional FC que recebe as props declaradas antes
+//desestruturação das props para acessar diretamente a função
 const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
+
+  //variaveis de gerenciamento de estado
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null); //exibir mensagens de erro
+  const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  //login com email e senha
+  //login com email e senha usando função assincrona
   const handleEmailSignIn = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); //evita o evento de recarregar a pag
     setError(null); //limpa mensagens de erro anteriores
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      setIsAuthenticated(true);
-      navigate("/home");
+      if (isSignUp) {
+        //chama funcao para criar o usuario
+        await createUserWithEmailAndPassword(auth, email, password);
+        setIsAuthenticated(true);//muda o estado
+        navigate("/home");
+
+      } else {
+        //chamando a função de login
+        await signInWithEmailAndPassword(auth, email, password);
+        setIsAuthenticated(true); //muda o estado
+        navigate("/home");
+      }
+
     } catch (err: any) {
-      setError("Email ou senha inválidos. Tente novamente.");
-      console.error("Erro ao fazer login com email e senha:", err);
+      if (isSignUp) {
+        setError("Erro ao criar conta. Verifique suas informações.");
+        console.error("Erro ao criar conta:", err);
+      } else {
+        setError("Email ou senha inválidos. Tente novamente.");
+        console.error("Erro ao fazer login:", err);
+      }
     }
   };
 
-  //login com google
+  //login com google usando função assincrona
   const handleGoogleSignIn = async () => {
     try {
+      //chamando a função de login com google
       await signInWithPopup(auth, googleProvider);
-      setIsAuthenticated(true);
+      setIsAuthenticated(true); //muda o estado
       navigate("/home");
     } catch (error) {
       console.error("Erro ao fazer login com o Google:", error);
@@ -74,8 +96,12 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
             required
           />
         </div>
-        <p>Forgot Password</p>
-        <button className="login-button" type="submit">Sign In</button>
+
+        {!isSignUp && <a>Forgot Password</a>}
+
+        <button className="login-button" type="submit">
+          {isSignUp ? "Sign Up" : "Sign In"}
+        </button>
 
         {/*botão de login com google*/}
         <button className="google-button" onClick={handleGoogleSignIn}>
@@ -83,11 +109,17 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
           Sign in with Google
         </button>
 
+        {error && <p className="error-message">{error}</p>} {/*mensagem de erro*/}
+
       </form>
 
-      {error && <p className="error-message">{error}</p>} {/*mensagem de erro*/}
-
-      <p className="signup-text">Didn’t have any account? <a>Sign Up here</a></p>
+      <p className="signup-text">
+        {isSignUp ? (
+          <>If you have an account? <a onClick={() => setIsSignUp(false)}>Sign In here</a></>
+        ) : (
+          <>Didn’t have any account? <a onClick={() => setIsSignUp(true)}>Sign Up here</a></>
+        )}
+      </p>
 
     </div>
   );
