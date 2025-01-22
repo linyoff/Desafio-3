@@ -1,7 +1,8 @@
-
+@layer base;
 
 :root {
-    --colorsPrimary: #0ACF83;
+    --colorsGreen: #0ACF83;
+    --colorsGreenDark: #009874;
     --colorsDefault: #000000;
     --colorsGreyDark_1: #7F7F7F;
     --colorsGrey: #BABABA;
@@ -9,10 +10,16 @@
     --colorsGreyLight_2: #F3F3F3;
     --colorsWhite: #FFFFFF;
     --colorsAccent: #FFC120;
+    --colorError: rgb(151, 0, 0);
 }
 
-* {
-    padding: 0;
+@layer base {
+  *, *::before, *::after {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: "DM Sans", sans-serif;
+  }
 }
+
+

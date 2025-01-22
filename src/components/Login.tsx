@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, googleProvider, signInWithPopup } from "../../config/config";
 import { signInWithEmailAndPassword } from "firebase/auth";
-
+import '../syles/Login.css';
+import { Mail, Lock } from 'react-feather';
 
 interface LoginProps {
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,36 +42,52 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
   };
 
   return (
-    <div className="login-container">
-      <h1>Login</h1>
+    <div className="login-page">
 
-      {/*formu de login por email e senha*/}
-      <form onSubmit={handleEmailSignIn}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Sign In</button>
+      <div className="text-header">
+        <h1>Audio</h1>
+        <h2>It's modular and designed to last</h2>
+      </div>
+
+      {/*form de login por email e senha*/}
+      <form className="login-form" onSubmit={handleEmailSignIn}>
+      <div className="input-container">
+          <Mail className="icon" size={20} /> {/* Ícone de email */}
+          <input
+            className="input-email"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input-container">
+          <Lock className="icon" size={20} /> {/* Ícone de senha */}
+          <input
+            className="input-password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <p>Forgot Password</p>
+        <button className="login-button" type="submit">Sign In</button>
       </form>
 
-      {error && <p className="error-message">{error}</p>} {/* Mensagem de erro */}
+      {error && <p className="error-message">{error}</p>} {/*mensagem de erro*/}
 
-      <hr />
 
       {/*botão de login com google*/}
-      <button className="google-signin" onClick={handleGoogleSignIn}>
+      <button className="google-button" onClick={handleGoogleSignIn}>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Icon" className="google-icon" /> {/* Ícone do Google */}
         Sign in with Google
       </button>
+
+      <p className="signup-text">Didn’t have any account? <a>Sign Up here</a></p>
+
     </div>
   );
 };
