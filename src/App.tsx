@@ -5,6 +5,7 @@ import { auth } from "../config/config";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import SearchPage from "./pages/SearchPage";
+import ShoppingCart from "./pages/ShoppingCart";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -53,6 +54,18 @@ const App: React.FC = () => {
           element={
             isAuthenticated ? (
               <SearchPage />
+            ) : (
+              <Navigate to="/Login" replace />
+            )
+          }
+        />
+
+        {/*tela shopping cart*/}
+        <Route
+          path="/ShoppingCart"
+          element={
+            isAuthenticated ? (
+              <ShoppingCart/>
             ) : (
               <Navigate to="/Login" replace />
             )

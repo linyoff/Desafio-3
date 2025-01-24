@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { Search, ShoppingCart, ChevronLeft } from 'react-feather';
 import { fetchProducts, Product } from "../utils/productService";
+import { StyleSearchPage } from "../styles/pages/search-page-styles";
 import InputField from "../components/InputField";
 import ProdCardSearch from "../components/ProdCardSearch";
 
@@ -9,6 +10,8 @@ const SearchPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
   const [searchText, setSearchText] = useState<string>("");
+  const navigate = useNavigate();
+  const handleCart = () => navigate('/ShoppingCart');
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -26,17 +29,19 @@ const SearchPage: React.FC = () => {
     loadProducts();
   }, []);
 
+
+
   return (
-    <Container>
-      <Header>
-        <BackButton>{
-          <ChevronLeft size={24}/>
-        }</BackButton>
+    <StyleSearchPage.Container>
+      <StyleSearchPage.Header>
+        <StyleSearchPage.BackButton>{
+          <ChevronLeft size={24} />
+        }</StyleSearchPage.BackButton>
         <h1>Search</h1>
-        <CartButton>{
-          <ShoppingCart size={24}/>
-        }</CartButton>
-      </Header>
+        <StyleSearchPage.CartButton onClick={handleCart}>{
+          <ShoppingCart size={24} />
+        }</StyleSearchPage.CartButton>
+      </StyleSearchPage.Header>
 
       <InputField
         type="text"
@@ -49,55 +54,22 @@ const SearchPage: React.FC = () => {
       {featuredProduct && (
         <div>
           <ProdCardSearch
+            key={featuredProduct.id}
             product={featuredProduct}
           />
         </div>
       )}
 
-      <SectionTitle>Popular product</SectionTitle>
+      <StyleSearchPage.SectionTitle>Popular product</StyleSearchPage.SectionTitle>
       {products.map((product) => (
         <ProdCardSearch
+          key={product.id}
           product={product}
         />
       ))}
-    </Container>
+    </StyleSearchPage.Container>
   );
 };
 
 export default SearchPage;
-
-const Container = styled.div`
-  padding: 30px 24px;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  
-  h1 {
-    font-size: 16px;
-  }
-
-`;
-
-const BackButton = styled.button`
-  border: none;
-  background: none;
-  font-size: 18px;
-  cursor: pointer;
-`;
-
-const CartButton = styled.button`
-  border: none;
-  background: none;
-  font-size: 18px;
-  cursor: pointer;
-`;
-
-const SectionTitle = styled.h2`
-  font-size: 18px;
-  margin-bottom: 16px;
-`;
 

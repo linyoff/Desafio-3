@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, Search } from 'react-feather';
+import { Search } from 'react-feather';
 import { fetchProducts, Product } from '../utils/productService';
-import styled from 'styled-components';
 import logo from '../images/Logo.png';
+import userImg from '../images/user-img.png';
+import { StyleHome } from '../styles/pages/home-styles';
 import InputField from '../components/InputField';
 import ProductCard from '../components/ProductCard';
 import CategoryButton from '../components/CategoryButton';
 import Banner from '../components/Banner';
+import { SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -17,6 +20,8 @@ const Home: React.FC = () => {
   //variaveis de controle de estado e funcoes para atualizar estado
   const [products, setProducts] = useState<Product[]>([]);
   const [featuredProduct, setfeaturedProduct] = useState<Product | null>(null);
+  const [category, setCategory] = useState<string>('');
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   //carregar os dados após o componente já ser montado
   useEffect(() => {
@@ -37,23 +42,29 @@ const Home: React.FC = () => {
     loadProducts();
   }, []);
 
+  const handleCategoryClick = (category: string) => {
+    setCategory(category);
+    const filtered = products.filter((product) => product.category === category);
+    setFilteredProducts(filtered);
+  };
+
   //variaveis para rota
   const handleLogout = () => navigate('/Login');
   const navigateToSearch = () => navigate('/SearchPage');
 
   return (
-    <Container>
-      <Header>
-        <Nav>
-          <MenuIcon />
-          <Logo src={logo} alt="Logo" />
-          <Avatar src="" alt="User Avatar" />
-        </Nav>
-      </Header>
+    <StyleHome.Container>
+      <StyleHome.Header>
+        <StyleHome.Nav>
+          <StyleHome.MenuIcon />
+          <StyleHome.Logo src={logo} alt="Logo" />
+          <StyleHome.Avatar src={userImg} alt="User Avatar" />
+        </StyleHome.Nav>
+      </StyleHome.Header>
 
-      <Main>
-        <Greeting>Hi, {username}</Greeting>
-        <Subheading>What are you looking for today?</Subheading>
+      <StyleHome.ContainerHead>
+        <StyleHome.Greeting>Hi, {username}</StyleHome.Greeting>
+        <StyleHome.Subheading>What are you looking for today?</StyleHome.Subheading>
 
         <InputField
           type="text"
@@ -62,139 +73,62 @@ const Home: React.FC = () => {
           icon={<Search className="icon" size={20} />}
           clickable //define como clicável
         />
+      </StyleHome.ContainerHead>
 
-        <ContainerProducts>
-          <Categories>
-            <CategoryButton
-              text="Headset"
-            />
-            <CategoryButton
-              text="Headphone"
-            />
-          </Categories>
+      <StyleHome.ContainerProducts>
 
-          {featuredProduct && (
-            <CarouselFeatProduct>
-              <Banner
-                product={featuredProduct}
-              />
-            </CarouselFeatProduct>
-          )}
+        <StyleHome.Categories>
+          <CategoryButton text="Headset" onClick={() => handleCategoryClick('Headset')} />
+          <CategoryButton text="Headphone" onClick={() => handleCategoryClick('Headphone')} />
+        </StyleHome.Categories>
 
-          <FeaturedProducts>
-            <SectionHeader>
-              <h3>Featured Products</h3>
-              <a href="#">See All</a>
-            </SectionHeader>
-            <ProductGrid>
-              {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </ProductGrid>
-          </FeaturedProducts>
-        </ContainerProducts>
+        {featuredProduct && (
+          <StyleHome.CarouselFeatProduct
+            spaceBetween={10}
+            slidesPerView={1}
+            pagination={{ clickable: true }}
+            modules={[Pagination]}
+          >
+            <SwiperSlide>
+              <Banner product={featuredProduct} />
+            </SwiperSlide>
+            {/* Adicione mais slides se necessário */}
+          </StyleHome.CarouselFeatProduct>
+        )}
 
-        <button onClick={handleLogout}>Sair</button>
-      </Main>
-    </Container>
+
+        <StyleHome.FeaturedProducts>
+          <StyleHome.SectionHeader>
+            <h3>Featured Products</h3>
+            <a href="#">See All</a>
+          </StyleHome.SectionHeader>
+
+          <StyleHome.ProductGridCarousel
+            spaceBetween={15} //espaço entre os slides
+            loop={false} //desativa o looping e não continua arrastando
+            pagination={{ clickable: true }}
+            breakpoints={{
+              640: { slidesPerView: 2, spaceBetween: 10 }, //para telas menores
+              1024: { slidesPerView: 3, spaceBetween: 20 }, //para tablets
+              1440: { slidesPerView: 4, spaceBetween: 30 }, //para desktops
+            }}
+            modules={[Pagination]}
+          >
+            {products.slice(0, 8).map((product) => (
+              <SwiperSlide key={product.id}>
+                <ProductCard product={product} />
+              </SwiperSlide>
+            ))}
+          </StyleHome.ProductGridCarousel>
+        </StyleHome.FeaturedProducts>
+
+      </StyleHome.ContainerProducts>
+
+      {/*<button onClick={handleLogout}>Sair</button>*/}
+
+    </StyleHome.Container>
   );
 };
 
 export default Home;
-
-//estilização usando styled components
-const Container = styled.div`
-  background-color: var(--colorsWhite);
-  color: var(--colorsDefault);
-`;
-
-const Header = styled.header`
-  padding: 30px 20px 10px;
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const MenuIcon = styled(Menu)`
-  cursor: pointer;
-`;
-
-const Logo = styled.img`
-  height: 30px;
-  margin: 0 10px;
-`;
-
-const Avatar = styled.img`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-`;
-
-const Main = styled.main`
-  padding: 0 20px;
-`;
-
-const Greeting = styled.h1`
-  font-size: 17px;
-  margin-top: 20px;
-  font-weight: 500;
-`;
-
-const Subheading = styled.h2`
-  font-size: 25px;
-  font-weight: bold;
-  margin-top: 10px;
-`;
-
-const ContainerProducts = styled.div`
-  background-color: var(--colorsGreyLight_1);
-  border-radius: 35px;
-`;
-
-
-const Categories = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
-`;
-
-const CarouselFeatProduct = styled.div`
-  
-`;
-
-const FeaturedProducts = styled.section`
-  margin-top: 20px;
-`;
-
-const SectionHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  h3 {
-    font-size: 18px;
-    font-weight: 400;
-  }
-
-  a {
-    font-size: 14px;
-    color: var(--colorsGreyDark_1);
-    text-decoration: none;
-  }
-`;
-
-const ProductGrid = styled.div`
-  display: flex;
-  flex-direction: inline;
-  gap: 15px;
-  margin-top: 20px;
-`;
-
-
-
-
 
