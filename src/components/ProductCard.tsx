@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Product } from '../utils/productService';
 
-interface ProductCardProps {
+export interface ProductCardProps {
     product: Product;
 }
 

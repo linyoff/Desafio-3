@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Search, ShoppingCart, ChevronLeft, Star } from 'react-feather';
+import { Search, ShoppingCart, ChevronLeft } from 'react-feather';
 import { fetchProducts, Product } from "../utils/productService";
 import InputField from "../components/InputField";
+import ProdCardSearch from "../components/ProdCardSearch";
 
 const SearchPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -25,63 +26,39 @@ const SearchPage: React.FC = () => {
     loadProducts();
   }, []);
 
-  const calculateRating = (reviews: Product["reviews"]) => {
-    const total = reviews.reduce((sum, review) => sum + review.rating, 0);
-    return reviews.length ? (total / reviews.length).toFixed(1) : "N/A";
-  };
-
   return (
     <Container>
       <Header>
         <BackButton>{
-          <ChevronLeft/>
-          }</BackButton>
+          <ChevronLeft size={24}/>
+        }</BackButton>
         <h1>Search</h1>
         <CartButton>{
-          <ShoppingCart
-          />
-          }</CartButton>
+          <ShoppingCart size={24}/>
+        }</CartButton>
       </Header>
 
       <InputField
-          type="text"
-          placeholder="Search headphone"
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
-          icon= {<Search className="icon" size={20} />}
-        />
+        type="text"
+        placeholder="Search headphone"
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        icon={<Search className="icon" size={20} />}
+      />
 
       {featuredProduct && (
         <div>
-          <ProductCard>
-            <ProductImage src={featuredProduct.img} alt={featuredProduct.name} />
-            <ProductInfo>
-              <ProductName>{featuredProduct.name}</ProductName>
-              <ProductPrice>USD {featuredProduct.price}</ProductPrice>
-              <ProductRating>
-                <Star color="var(--colorsAccent)" size={20}/>
-                {calculateRating(featuredProduct.reviews)} ({featuredProduct.reviews.length} Reviews)
-              </ProductRating>
-            </ProductInfo>
-            <OptionsButton>{"⋮"}</OptionsButton>
-          </ProductCard>
+          <ProdCardSearch
+            product={featuredProduct}
+          />
         </div>
       )}
 
       <SectionTitle>Popular product</SectionTitle>
       {products.map((product) => (
-        <ProductCard key={product.id}>
-          <ProductImage src={product.img} alt={product.name} />
-          <ProductInfo>
-            <ProductName>{product.name}</ProductName>
-            <ProductPrice>USD {product.price}</ProductPrice>
-            <ProductRating>
-            <Star color="var(--colorsAccent)" size={20}/>
-              {calculateRating(product.reviews)} ({product.reviews.length} Reviews)
-            </ProductRating>
-          </ProductInfo>
-          <OptionsButton>{"⋮"}</OptionsButton>
-        </ProductCard>
+        <ProdCardSearch
+          product={product}
+        />
       ))}
     </Container>
   );
@@ -90,7 +67,7 @@ const SearchPage: React.FC = () => {
 export default SearchPage;
 
 const Container = styled.div`
-  padding: 16px;
+  padding: 30px 24px;
 `;
 
 const Header = styled.div`
@@ -98,6 +75,11 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  
+  h1 {
+    font-size: 16px;
+  }
+
 `;
 
 const BackButton = styled.button`
@@ -119,44 +101,3 @@ const SectionTitle = styled.h2`
   margin-bottom: 16px;
 `;
 
-const ProductCard = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-`;
-
-const ProductImage = styled.img`
-  width: 64px;
-  height: 64px;
-  border-radius: 8px;
-  margin-right: 16px;
-`;
-
-const ProductInfo = styled.div`
-  flex: 1;
-`;
-
-const ProductName = styled.h3`
-  font-size: 16px;
-  margin: 0;
-`;
-
-const ProductPrice = styled.p`
-  font-size: 14px;
-  margin: 4px 0;
-  color: #555;
-`;
-
-const ProductRating = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: #777;
-`;
-
-const OptionsButton = styled.button`
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 18px;
-`;
