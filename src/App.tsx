@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/config";
-import Login from "./components/Login";
-import Home from "./components/Home";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import SearchPage from "./pages/SearchPage";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -32,22 +33,34 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         {/*tela de login*/}
-        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/Login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
 
         {/*tela home*/}
         <Route
-          path="/home"
+          path="/Home"
           element={
             isAuthenticated ? (
               <Home />
             ) : (
-              <Navigate to="/login" replace />
+              <Navigate to="/Login" replace />
+            )
+          }
+        />
+
+        {/*tela search*/}
+        <Route
+          path="/SearchPage"
+          element={
+            isAuthenticated ? (
+              <SearchPage />
+            ) : (
+              <Navigate to="/Login" replace />
             )
           }
         />
 
         {/*redirecionando para tela de login*/}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/Login" replace />} />
       </Routes>
     </Router>
   );
