@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, ShoppingCart, ChevronLeft } from 'react-feather';
+import { Search, ShoppingCart, ChevronLeft } from "react-feather";
 import { fetchProducts, Product } from "../utils/productService";
 import { StyleSearchPage } from "../styles/pages/search-page-styles";
+import { getPopularProducts } from "../utils/calcs";
 import InputField from "../components/InputField";
 import ProdCardSearch from "../components/ProdCardSearch";
 
 const SearchPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [featuredProduct, setFeaturedProduct] = useState<Product | null>(null);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [popularProducts, setPopularProducts] = useState<Product[]>([]);
   const [searchText, setSearchText] = useState<string>("");
+
   const navigate = useNavigate();
-  const handleCart = () => navigate('/ShoppingCart');
+
+  const handleCart = () => navigate("/ShoppingCart");
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -19,7 +23,10 @@ const SearchPage: React.FC = () => {
         const data = await fetchProducts();
         if (data.length > 0) {
           setProducts(data);
-          setFeaturedProduct(data[0]);
+
+          const popular = getPopularProducts(data, 3);
+          setPopularProducts(popular);
+
         }
       } catch (error) {
         console.error("Erro ao carregar produtos:", error);
@@ -29,18 +36,24 @@ const SearchPage: React.FC = () => {
     loadProducts();
   }, []);
 
-
+  useEffect(() => {
+    //filtrar produtos pelo texto de busca
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(searchText.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  }, [searchText, products]);
 
   return (
     <StyleSearchPage.Container>
       <StyleSearchPage.Header>
-        <StyleSearchPage.BackButton>{
+        <StyleSearchPage.BackButton>
           <ChevronLeft size={24} />
-        }</StyleSearchPage.BackButton>
+        </StyleSearchPage.BackButton>
         <h1>Search</h1>
-        <StyleSearchPage.CartButton onClick={handleCart}>{
+        <StyleSearchPage.CartButton onClick={handleCart}>
           <ShoppingCart size={24} />
-        }</StyleSearchPage.CartButton>
+        </StyleSearchPage.CartButton>
       </StyleSearchPage.Header>
 
       <InputField
@@ -51,25 +64,29 @@ const SearchPage: React.FC = () => {
         icon={<Search className="icon" size={20} />}
       />
 
-      {featuredProduct && (
-        <div>
-          <ProdCardSearch
-            key={featuredProduct.id}
-            product={featuredProduct}
-          />
-        </div>
+      {searchText ? (
+        <StyleSearchPage.SearchedProd>
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <ProdCardSearch key={product.id} product={product} />
+            ))
+          ) : (
+            <p>Sem resultados</p>
+          )}
+        </StyleSearchPage.SearchedProd>
+      ) : (
+        <p>Digite para começar a busca</p>
       )}
 
-      <StyleSearchPage.SectionTitle>Popular product</StyleSearchPage.SectionTitle>
-      {products.map((product) => (
-        <ProdCardSearch
-          key={product.id}
-          product={product}
-        />
-      ))}
+      <StyleSearchPage.PopularProd>
+        <h2>Popular Products</h2>
+        {popularProducts.map((product) => (
+          <ProdCardSearch key={product.id} product={product} />
+        ))}
+      </StyleSearchPage.PopularProd>
+
     </StyleSearchPage.Container>
   );
 };
 
 export default SearchPage;
-

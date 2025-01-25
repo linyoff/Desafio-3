@@ -13,7 +13,6 @@ const Header = styled.div`
   h1 {
     font-size: 16px;
   }
-
 `;
 
 const BackButton = styled.button`
@@ -35,10 +34,24 @@ const SectionTitle = styled.h2`
   margin-bottom: 16px;
 `;
 
+const PopularProd = styled.div`
+  h2{
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+`;
+
+const SearchedProd = styled.div`
+  
+`;
+
 export const StyleSearchPage = {
     Container,
     Header,
     BackButton,
     CartButton,
-    SectionTitle
+    SectionTitle,
+    PopularProd,
+    SearchedProd,
 }

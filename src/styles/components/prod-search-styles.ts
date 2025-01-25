@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const StyledProdCard = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin: 16px 0;
 `;
 
 const ProductImage = styled.img`

@@ -55,11 +55,13 @@ const Home: React.FC = () => {
   return (
     <StyleHome.Container>
       <StyleHome.Header>
+
         <StyleHome.Nav>
           <StyleHome.MenuIcon />
           <StyleHome.Logo src={logo} alt="Logo" />
           <StyleHome.Avatar src={userImg} alt="User Avatar" />
         </StyleHome.Nav>
+        
       </StyleHome.Header>
 
       <StyleHome.ContainerHead>

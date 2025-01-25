@@ -39,3 +39,4 @@ export const fetchProducts = async (): Promise<Product[]> => {
         throw error;
     }
 };
+  
