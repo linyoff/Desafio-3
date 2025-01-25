@@ -11,6 +11,7 @@ import CategoryButton from '../components/CategoryButton';
 import Banner from '../components/Banner';
 import { SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import { getPopularProducts } from "../utils/calcs";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -19,8 +20,7 @@ const Home: React.FC = () => {
 
   //variaveis de controle de estado e funcoes para atualizar estado
   const [products, setProducts] = useState<Product[]>([]);
-  const [featuredProduct, setfeaturedProduct] = useState<Product | null>(null);
-  const [category, setCategory] = useState<string>('');
+  const [category, setCategory] = useState<string>('headsets');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
   //carregar os dados após o componente já ser montado
@@ -32,7 +32,6 @@ const Home: React.FC = () => {
         const data = await fetchProducts();
         if (data.length > 0) {
           setProducts(data); //armazenando os dados obtidos
-          setfeaturedProduct(data[0]); //definindo primeiro produto como destaque
         }
       } catch (error) {
         console.error("Erro ao carregar produtos:", error);
@@ -42,15 +41,23 @@ const Home: React.FC = () => {
     loadProducts();
   }, []);
 
-  const handleCategoryClick = (category: string) => {
-    setCategory(category);
+  //filtrando por category
+  useEffect(() => {
     const filtered = products.filter((product) => product.category === category);
     setFilteredProducts(filtered);
+  }, [category, products]);
+
+
+  const handleCategoryClick = (category: string) => {
+    setCategory(category); //atualiza a categoria ao clicar
   };
 
   //variaveis para rota
-  const handleLogout = () => navigate('/Login');
+  //const handleLogout = () => navigate('/Login');
   const navigateToSearch = () => navigate('/SearchPage');
+
+  //pegando produtos mais populares para exibir no segundo carrossel 
+  const popular = getPopularProducts(products, 8);
 
   return (
     <StyleHome.Container>
@@ -61,7 +68,7 @@ const Home: React.FC = () => {
           <StyleHome.Logo src={logo} alt="Logo" />
           <StyleHome.Avatar src={userImg} alt="User Avatar" />
         </StyleHome.Nav>
-        
+
       </StyleHome.Header>
 
       <StyleHome.ContainerHead>
@@ -80,22 +87,36 @@ const Home: React.FC = () => {
       <StyleHome.ContainerProducts>
 
         <StyleHome.Categories>
-          <CategoryButton text="Headset" onClick={() => handleCategoryClick('Headset')} />
-          <CategoryButton text="Headphone" onClick={() => handleCategoryClick('Headphone')} />
+          <CategoryButton
+            text="Headset"
+            onClick={() => handleCategoryClick('headsets')}
+          />
+          <CategoryButton
+            text="Headphone"
+            onClick={() => handleCategoryClick('headphones')}
+          />
         </StyleHome.Categories>
 
-        {featuredProduct && (
+        {filteredProducts.length > 0 && (
           <StyleHome.CarouselFeatProduct
-            spaceBetween={10}
-            slidesPerView={1}
-            pagination={{ clickable: true }}
-            modules={[Pagination]}
+            spaceBetween={20}  //espaço entre o conteudo
+            pagination={{ clickable: true }} 
+            centeredSlides={true}  //centraliza o conteudo
+            slidesPerView="auto" //ajusta a largura dos slides
+            breakpoints={{
+              640: { slidesPerView: 1.5, spaceBetween: 20 },
+              1024: { slidesPerView: 2, spaceBetween: 20 },
+              1440: { slidesPerView: 3, spaceBetween: 30 },
+            }}
+            modules={[Pagination]}  //módulo de paginação
           >
-            <SwiperSlide>
-              <Banner product={featuredProduct} />
-            </SwiperSlide>
-            {/* Adicione mais slides se necessário */}
+            {filteredProducts.map((product) => (
+              <SwiperSlide key={product.id}>
+                <Banner product={product} />
+              </SwiperSlide>
+            ))}
           </StyleHome.CarouselFeatProduct>
+
         )}
 
 
@@ -106,22 +127,23 @@ const Home: React.FC = () => {
           </StyleHome.SectionHeader>
 
           <StyleHome.ProductGridCarousel
-            spaceBetween={15} //espaço entre os slides
-            loop={false} //desativa o looping e não continua arrastando
+            spaceBetween={22} //espaço entre os slides
             pagination={{ clickable: true }}
+            centeredSlides={true}  //centraliza o conteudo
+            slidesPerView="auto" //ajusta a largura dos slides
             breakpoints={{
               640: { slidesPerView: 2, spaceBetween: 10 }, //para telas menores
               1024: { slidesPerView: 3, spaceBetween: 20 }, //para tablets
               1440: { slidesPerView: 4, spaceBetween: 30 }, //para desktops
             }}
-            modules={[Pagination]}
-          >
-            {products.slice(0, 8).map((product) => (
+            modules={[Pagination]} >
+            {popular.map((product) => (
               <SwiperSlide key={product.id}>
                 <ProductCard product={product} />
               </SwiperSlide>
             ))}
           </StyleHome.ProductGridCarousel>
+
         </StyleHome.FeaturedProducts>
 
       </StyleHome.ContainerProducts>

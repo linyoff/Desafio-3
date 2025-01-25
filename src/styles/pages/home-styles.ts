@@ -63,9 +63,10 @@ const Categories = styled.div`
 `;
 
 const CarouselFeatProduct = styled(Swiper)`
-  overflow: hidden;
+  margin-top: 20px;
 
   .swiper-wrapper {
+    display: flex;
     align-items: center;
   }
 
@@ -124,19 +125,19 @@ const ProductGridCarousel = styled(Swiper)`
 
 
 export const StyleHome = {
-    Container,
-    Header,
-    Nav,
-    MenuIcon,
-    Logo,
-    Avatar,
-    ContainerHead,
-    Greeting,
-    Subheading,
-    ContainerProducts,
-    Categories,
-    CarouselFeatProduct,
-    FeaturedProducts,
-    SectionHeader,
-    ProductGridCarousel
+  Container,
+  Header,
+  Nav,
+  MenuIcon,
+  Logo,
+  Avatar,
+  ContainerHead,
+  Greeting,
+  Subheading,
+  ContainerProducts,
+  Categories,
+  CarouselFeatProduct,
+  FeaturedProducts,
+  SectionHeader,
+  ProductGridCarousel
 }
