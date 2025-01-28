@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import SearchPage from "./pages/SearchPage";
 import ShoppingCart from "./pages/ShoppingCart";
+import ProductDetail from "./pages/ProductDetail";
+import ExploreProducts from "./pages/ExploreProducts";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -36,44 +38,42 @@ const App: React.FC = () => {
         {/*tela de login*/}
         <Route path="/Login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
 
+        {/*redirecionando para tela de login*/}
+        <Route path="*" element={<Navigate to="/login" replace />} />
+
         {/*tela home*/}
         <Route
-          path="/Home"
+          path="/home"
           element={
             isAuthenticated ? (
               <Home />
             ) : (
-              <Navigate to="/Login" replace />
+              <Navigate to="/login" replace />
             )
           }
         />
 
         {/*tela search*/}
         <Route
-          path="/SearchPage"
+          path="/search-page"
           element={
             isAuthenticated ? (
               <SearchPage />
             ) : (
-              <Navigate to="/Login" replace />
+              <Navigate to="/login" replace />
             )
           }
         />
 
         {/*tela shopping cart*/}
-        <Route
-          path="/ShoppingCart"
-          element={
-            isAuthenticated ? (
-              <ShoppingCart/>
-            ) : (
-              <Navigate to="/Login" replace />
-            )
-          }
-        />
+        <Route path="/shopping-cart" element={<ShoppingCart />} />
 
-        {/*redirecionando para tela de login*/}
-        <Route path="*" element={<Navigate to="/Login" replace />} />
+        {/*detalhes do produto */}
+        <Route path="/product-detail/:id" element={<ProductDetail />} />
+
+        {/*detalhes do produto */}
+        <Route path="/explore-products" element={<ExploreProducts />} />
+
       </Routes>
     </Router>
   );

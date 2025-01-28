@@ -18,10 +18,14 @@ export interface Product {
     createdAt: string;
 }
 
+export interface ProductProp {
+    product: Product;
+}
+
 //exportando variavel que ira receber os dados por meio de funcao assincrona
 //promise de retornar uma array do tipo Product
 export const fetchProducts = async (): Promise<Product[]> => {
-    const API_URL = "https://run.mocky.io/v3/a60ec0a9-e4e3-4753-be2f-197538645f06";
+    const API_URL = "https://run.mocky.io/v3/72b03f6f-68dd-482e-bdd9-fbb81c58dafe";
 
     try {
         //variavel com a resposta

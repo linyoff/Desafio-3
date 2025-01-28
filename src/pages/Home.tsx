@@ -7,7 +7,7 @@ import userImg from '../images/user-img.png';
 import { StyleHome } from '../styles/pages/home-styles';
 import InputField from '../components/InputField';
 import ProductCard from '../components/ProductCard';
-import CategoryButton from '../components/CategoryButton';
+import { CategoryButton } from '../components/CategoryButton';
 import Banner from '../components/Banner';
 import { SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -54,7 +54,8 @@ const Home: React.FC = () => {
 
   //variaveis para rota
   //const handleLogout = () => navigate('/Login');
-  const navigateToSearch = () => navigate('/SearchPage');
+  const handleSearch = () => navigate('/search-page');
+  const handleSeeAll = () => navigate('/explore-products');
 
   //pegando produtos mais populares para exibir no segundo carrossel 
   const popular = getPopularProducts(products, 8);
@@ -78,7 +79,7 @@ const Home: React.FC = () => {
         <InputField
           type="text"
           placeholder="Search headphone"
-          onClick={navigateToSearch} //chama a função ao clicar
+          onClick={handleSearch} //chama a função ao clicar
           icon={<Search className="icon" size={20} />}
           clickable //define como clicável
         />
@@ -123,7 +124,7 @@ const Home: React.FC = () => {
         <StyleHome.FeaturedProducts>
           <StyleHome.SectionHeader>
             <h3>Featured Products</h3>
-            <a href="#">See All</a>
+            <button onClick={handleSeeAll}>See All</button>
           </StyleHome.SectionHeader>
 
           <StyleHome.ProductGridCarousel
@@ -132,14 +133,14 @@ const Home: React.FC = () => {
             centeredSlides={true}  //centraliza o conteudo
             slidesPerView="auto" //ajusta a largura dos slides
             breakpoints={{
-              640: { slidesPerView: 2, spaceBetween: 10 }, //para telas menores
-              1024: { slidesPerView: 3, spaceBetween: 20 }, //para tablets
-              1440: { slidesPerView: 4, spaceBetween: 30 }, //para desktops
+              640: { slidesPerView: 2, spaceBetween: 22 }, //para telas menores
+              1024: { slidesPerView: 3, spaceBetween: 22 }, //para tablets
+              1440: { slidesPerView: 4, spaceBetween: 32 }, //para desktops
             }}
             modules={[Pagination]} >
             {popular.map((product) => (
               <SwiperSlide key={product.id}>
-                <ProductCard product={product} />
+                <ProductCard product={product} rating={false}/>
               </SwiperSlide>
             ))}
           </StyleHome.ProductGridCarousel>

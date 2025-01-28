@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowRight } from "react-feather";
-import { ProductProp } from '../components/ProductCard';
+import { ProductProp } from "../utils/productService";
 import { BannerStyles } from "../styles/components/banner-styles"; //import dos estilos agrupados
 
 const Banner: React.FC<ProductProp> = ({ product }) => (

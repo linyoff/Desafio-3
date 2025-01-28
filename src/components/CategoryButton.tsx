@@ -1,14 +1,24 @@
 import React from 'react';
-import { StyledCatButton } from '../styles/components/category-bt-styles';
+import { StyledCatButton, StyledSortButton } from '../styles/components/category-bt-styles';
 
 interface CategoryButtonProps {
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
 }
 
-const CategoryButton: React.FC<CategoryButtonProps> = ({text, onClick}) => (
+export const CategoryButton: React.FC<CategoryButtonProps> = ({text, onClick}) => (
     <StyledCatButton onClick={onClick}>{text}</StyledCatButton>
 );
 
-export default CategoryButton;
+export const CategoryButtonSort: React.FC<CategoryButtonProps & { isSelected?: boolean }> = ({
+    text,
+    onClick,
+    isSelected,
+  }) => (
+    <StyledSortButton onClick={onClick} className={isSelected ? "selected" : ""}>
+      {text}
+    </StyledSortButton>
+  );
+  
+
 

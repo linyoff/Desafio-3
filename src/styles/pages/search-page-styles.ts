@@ -1,32 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 30px 24px;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-  
-  h1 {
-    font-size: 16px;
-  }
-`;
-
-const BackButton = styled.button`
-  border: none;
-  background: none;
-  font-size: 18px;
-  cursor: pointer;
-`;
-
-const CartButton = styled.button`
-  border: none;
-  background: none;
-  font-size: 18px;
-  cursor: pointer;
+  padding: 16px 24px;
 `;
 
 const SectionTitle = styled.h2`
@@ -48,9 +23,6 @@ const SearchedProd = styled.div`
 
 export const StyleSearchPage = {
     Container,
-    Header,
-    BackButton,
-    CartButton,
     SectionTitle,
     PopularProd,
     SearchedProd,

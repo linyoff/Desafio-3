@@ -33,7 +33,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
       if (auth.currentUser?.email) {
         const userEmail = auth.currentUser.email;
         const userUsername = userEmail.split("@")[0];
-        navigate("/Home", { state: { username: userUsername } });
+        navigate("/home", { state: { username: userUsername } });
       }
     } catch (err: any) {
       if (isSignUp) {
@@ -54,7 +54,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
       if (auth.currentUser?.email) {
         const userEmail = auth.currentUser.email;
         const userUsername = userEmail.split("@")[0];
-        navigate("/Home", { state: { username: userUsername } });
+        navigate("/home", { state: { username: userUsername } });
       }
     } catch (error) {
       console.error("Erro ao fazer login com o Google:", error);

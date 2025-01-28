@@ -51,7 +51,8 @@ const Subheading = styled.h2`
 
 const ContainerProducts = styled.div`
   background-color: var(--colorsGreyLight_1);
-  border-radius: 35px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
   padding: 20px;
   margin-top: 25px;
   overflow: hidden;
@@ -83,7 +84,7 @@ const CarouselFeatProduct = styled(Swiper)`
 
 const FeaturedProducts = styled.section`
   margin-top: 20px;
-  padding: 0 24px;
+
 `;
 
 const SectionHeader = styled.div`
@@ -96,13 +97,14 @@ const SectionHeader = styled.div`
     font-weight: 400;
   }
 
-  a {
+  button {
+    background: none;
+    border: none;
     font-size: 14px;
     color: var(--colorsGreyDark_1);
     text-decoration: none;
   }
 `;
-
 
 const ProductGridCarousel = styled(Swiper)`
   margin-top: 20px;
@@ -122,7 +124,6 @@ const ProductGridCarousel = styled(Swiper)`
     background: var(--colorsDefault);
   }
 `;
-
 
 export const StyleHome = {
   Container,

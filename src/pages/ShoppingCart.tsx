@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { StyleShoppCart } from "../styles/pages/shopp-cart-styles";
+import HeaderCostum from "../components/HeaderCostum";
+import { Trash2 } from "react-feather";
 import ButtonField from "../components/ButtonField";
 
 interface CartItem {
@@ -55,13 +57,20 @@ const ShoppingCart: React.FC = () => {
     0
   );
 
+  const clearCart = () => {
+    setCartItems([]); //redefine o carrinho para vazio
+  };
+
   return (
     <StyleShoppCart.Container>
-      <StyleShoppCart.Header>
-        <StyleShoppCart.BackButton>{"<"}</StyleShoppCart.BackButton>
-        <StyleShoppCart.Title>Shopping Cart</StyleShoppCart.Title>
-        <StyleShoppCart.TrashButton>{"🗑"}</StyleShoppCart.TrashButton>
-      </StyleShoppCart.Header>
+      
+      <HeaderCostum
+        icon={
+          <Trash2 size={24}/>
+        }
+        text="Shopping Cart" 
+        onClick={clearCart}
+      />
 
       {cartItems.map((item) => (
         <StyleShoppCart.CartItemContainer key={item.id}>
@@ -79,7 +88,7 @@ const ShoppingCart: React.FC = () => {
               </StyleShoppCart.QuantityButton>
             </StyleShoppCart.QuantityContainer>
           </StyleShoppCart.ItemDetails>
-          <StyleShoppCart.RemoveButton onClick={() => removeItem(item.id)}>{"🗑"}</StyleShoppCart.RemoveButton>
+          <StyleShoppCart.RemoveButton onClick={() => removeItem(item.id)}>{<Trash2 color="var(--colorsGreyDark_1)" size={20}/>}</StyleShoppCart.RemoveButton>
         </StyleShoppCart.CartItemContainer>
       ))}
 

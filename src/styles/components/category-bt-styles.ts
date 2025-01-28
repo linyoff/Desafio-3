@@ -14,3 +14,23 @@ export const StyledCatButton = styled.button`
     color: var(--colorsWhite);
   }
 `;
+
+export const StyledSortButton = styled.button`
+  background-color: var(--colorsGreyLight_1);
+  border: 1px solid;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--colorsGreen);
+    color: var(--colorsWhite);
+  }
+
+  &.active {
+    background-color: var(--colorsGreen);
+    color: var(--colorsWhite);
+  }
+
+`;

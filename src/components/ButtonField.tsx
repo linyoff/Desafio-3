@@ -4,11 +4,12 @@ import { StyledButton } from "../styles/components/button-styles";
 interface ButtonProps {
     typeButton: "button" | "submit" | "reset";
     text: string;
+    onClick?: () => void;
 }
 
-const ButtonField: React.FC<ButtonProps> = ({ typeButton, text }) => {
+const ButtonField: React.FC<ButtonProps> = ({ typeButton, text, onClick }) => {
     return (
-        <StyledButton type={typeButton}>
+        <StyledButton type={typeButton} onClick={onClick}>
             {text}
         </StyledButton>
     );

@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import { ProductProp } from '../utils/productService';
 import { Star, MoreVertical } from 'react-feather';
 import { calculateRating } from '../utils/calcs';
-import { ProductProp } from '../components/ProductCard';
 import { ProdCardStyles } from '../styles/components/prod-search-styles';
 
 const ProdCardSearch: React.FC<ProductProp> = ({ product }) => {
-  
+
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -24,20 +24,23 @@ const ProdCardSearch: React.FC<ProductProp> = ({ product }) => {
         <ProdCardStyles.ProductPrice>USD {product.price}</ProdCardStyles.ProductPrice>
 
         <ProdCardStyles.ProductRating>
-          <Star color="var(--colorsAccent)" size={20} />
-          {calculateRating(product.reviews)} {product.reviews.length} Reviews
+          <p>
+            <Star color="var(--colorsAccent)" size={10} />
+            {calculateRating(product.reviews)}
+          </p>
+          <p>{product.reviews.length} Reviews</p>
         </ProdCardStyles.ProductRating>
 
       </ProdCardStyles.ProductInfo>
 
       <ProdCardStyles.OptionsButton>
 
-        <MoreVertical color="var(--colorsGreyDark_1)"/>
+        <MoreVertical color="var(--colorsGreyDark_1)" />
       </ProdCardStyles.OptionsButton>
     </ProdCardStyles.StyledProdCard>
 
   );
 };
-  
-  
+
+
 export default ProdCardSearch;

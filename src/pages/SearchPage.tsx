@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Search, ShoppingCart, ChevronLeft } from "react-feather";
+import { Search, ShoppingCart } from "react-feather";
+import HeaderCostum from "../components/HeaderCostum";
 import { fetchProducts, Product } from "../utils/productService";
 import { StyleSearchPage } from "../styles/pages/search-page-styles";
 import { getPopularProducts } from "../utils/calcs";
 import InputField from "../components/InputField";
+
 import ProdCardSearch from "../components/ProdCardSearch";
 
 const SearchPage: React.FC = () => {
@@ -15,7 +17,7 @@ const SearchPage: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleCart = () => navigate("/ShoppingCart");
+  const handleCart = () => navigate("/shopping-cart");
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -46,15 +48,14 @@ const SearchPage: React.FC = () => {
 
   return (
     <StyleSearchPage.Container>
-      <StyleSearchPage.Header>
-        <StyleSearchPage.BackButton>
-          <ChevronLeft size={24} />
-        </StyleSearchPage.BackButton>
-        <h1>Search</h1>
-        <StyleSearchPage.CartButton onClick={handleCart}>
-          <ShoppingCart size={24} />
-        </StyleSearchPage.CartButton>
-      </StyleSearchPage.Header>
+
+      <HeaderCostum
+        icon={
+          <ShoppingCart size={24}/>
+        }
+        text="Search" 
+        onClick={handleCart}
+      />
 
       <InputField
         type="text"

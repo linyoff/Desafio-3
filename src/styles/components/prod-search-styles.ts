@@ -33,6 +33,7 @@ const ProductRating = styled.div`
   display: flex;
   align-items: center;
   font-size: 14px;
+  gap: 10px;
   
   svg {
     margin-right: 4px;
