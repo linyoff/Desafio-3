@@ -1,9 +1,10 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import { Star } from 'react-feather';
+import { Star, MoreVertical } from 'react-feather';
 import { Product } from '../utils/productService';
 import { StyledProductCard, ProductImage, Rating } from '../styles/components/prod-card-styles';
 import { calculateRating } from '../utils/calcs';
+import { OptionsButton } from '../styles/components/prod-card-styles';
 
 interface CardProp {
   product: Product;
@@ -31,6 +32,9 @@ const ProductCard: React.FC<CardProp> = ({ product, rating }) => {
             {calculateRating(product.reviews)}
           </p>
           <p>{product.reviews.length} Reviews</p>
+          <OptionsButton>
+            <MoreVertical size={18} color="var(--colorsGreyDark_1)" />
+          </OptionsButton>
         </Rating>
       )}
     </StyledProductCard>

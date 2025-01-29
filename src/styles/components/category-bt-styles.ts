@@ -13,6 +13,11 @@ export const StyledCatButton = styled.button`
     background-color: var(--colorsGreen);
     color: var(--colorsWhite);
   }
+  
+  &.selected {
+    background-color: var(--colorsGreen);
+    color: var(--colorsWhite);
+  }
 `;
 
 export const StyledSortButton = styled.button`
@@ -28,7 +33,7 @@ export const StyledSortButton = styled.button`
     color: var(--colorsWhite);
   }
 
-  &.active {
+  &.selected {
     background-color: var(--colorsGreen);
     color: var(--colorsWhite);
   }

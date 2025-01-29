@@ -34,7 +34,7 @@ export const Rating = styled.div`
   left: 10px; 
   align-items: center;
   font-size: 12px;
-  gap: 10px;
+  gap: 15px;
   margin: 10px 0;
   font-weight: 300;
   
@@ -42,4 +42,11 @@ export const Rating = styled.div`
   svg {
     margin-right: 4px;
   }
+`;
+
+export const OptionsButton = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
 `;

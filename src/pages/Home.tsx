@@ -91,10 +91,12 @@ const Home: React.FC = () => {
           <CategoryButton
             text="Headset"
             onClick={() => handleCategoryClick('headsets')}
+            isSelected={category === 'headsets'} //verificando qual vai estar selecionado inicialmente
           />
           <CategoryButton
             text="Headphone"
             onClick={() => handleCategoryClick('headphones')}
+            isSelected={category === 'headphones'}
           />
         </StyleHome.Categories>
 

@@ -37,6 +37,7 @@ const ProdCardSearch: React.FC<ProductProp> = ({ product }) => {
 
         <MoreVertical color="var(--colorsGreyDark_1)" />
       </ProdCardStyles.OptionsButton>
+      
     </ProdCardStyles.StyledProdCard>
 
   );

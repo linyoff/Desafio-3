@@ -4,24 +4,57 @@ import { StyledFilterModal } from "../styles/components/filter-styles";
 import ButtonField from "./ButtonField";
 import { CategoryButton, CategoryButtonSort } from "./CategoryButton";
 
-const FilterModal: React.FC<{ isModalOpen: boolean; onClose: () => void }> = ({
-  isModalOpen,
-  onClose,
-}) => {
+const FilterModal: React.FC<{ 
+  isModalOpen: boolean; 
+  onClose: () => void;
+  onApplyFilters: (filters: { sort: string[]; categories: string[] }) => void; 
+}> = ({ isModalOpen, onClose, onApplyFilters }) => {
+
   const [selectedSortFilters, setSelectedSortFilters] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const handleSortButtonClick = (text: string) => {
-    setSelectedSortFilters((prevFilters) =>
-      prevFilters.includes(text)
-        ? prevFilters.filter((filter) => filter !== text) // Remove se já estiver na lista
-        : [...prevFilters, text] // Adiciona à lista
+    setSelectedSortFilters((prevFilters) => {
+      let updatedFilters = [...prevFilters];
+  
+      //se newest for selecionado remove oldest
+      if (text === "Newest") {
+        updatedFilters = updatedFilters.filter((filter) => filter !== "Oldest");
+      } else if (text === "Oldest") {
+        updatedFilters = updatedFilters.filter((filter) => filter !== "Newest");
+      }
+
+      //se low price for selecionado remove high price
+      if (text === "High Price") {
+        updatedFilters = updatedFilters.filter((filter) => filter !== "Low Price");
+      } else if (text === "Low Price") {
+        updatedFilters = updatedFilters.filter((filter) => filter !== "High Price");
+      }
+  
+      return updatedFilters.includes(text)
+        ? updatedFilters.filter((filter) => filter !== text) //remove se já estiver selecionado
+        : [...updatedFilters, text]; //adiciona se não estiver selecionado
+    });
+  };
+  
+
+  const handleCategoryButtonClick = (category: string) => {
+    setSelectedCategories((prevCategories) =>
+      prevCategories.includes(category)
+        ? prevCategories.filter((cat) => cat !== category)
+        : [...prevCategories, category]
     );
   };
 
   const applyFilters = () => {
-    console.log("Filtros aplicados:", selectedSortFilters);
-    // Aqui você pode enviar os filtros selecionados para o componente pai ou realizar a pesquisa.
+    const appliedFilters = {
+      sort: selectedSortFilters,
+      categories: selectedCategories,
+    };
+    console.log(appliedFilters);
+    onApplyFilters(appliedFilters);
   };
+  
 
   if (!isModalOpen) return null;
 
@@ -38,34 +71,28 @@ const FilterModal: React.FC<{ isModalOpen: boolean; onClose: () => void }> = ({
           <StyledFilterModal.Section>
             <h4>Category</h4>
             <StyledFilterModal.ButtonGroup>
-              <CategoryButton text="Headset" />
-              <CategoryButton text="Headset" />
+              {["headphones", "headsets"].map((category) => (
+                <CategoryButton
+                  key={category}
+                  text={category.charAt(0).toUpperCase() + category.slice(1, -1)} //primeira letra maiúscula e sem o "s" final
+                  onClick={() => handleCategoryButtonClick(category)}
+                  isSelected={selectedCategories.includes(category)}
+                />
+              ))}
             </StyledFilterModal.ButtonGroup>
           </StyledFilterModal.Section>
 
           <StyledFilterModal.Section>
             <h4>Sort By</h4>
             <StyledFilterModal.ButtonGroup>
-              <CategoryButtonSort
-                text="Popularity"
-                onClick={() => handleSortButtonClick("Popularity")}
-              />
-              <CategoryButtonSort
-                text="Newest"
-                onClick={() => handleSortButtonClick("Newest")}
-              />
-              <CategoryButtonSort
-                text="Oldest"
-                onClick={() => handleSortButtonClick("Oldest")}
-              />
-              <CategoryButtonSort
-                text="High Price"
-                onClick={() => handleSortButtonClick("High Price")}
-              />
-              <CategoryButtonSort
-                text="Low Price"
-                onClick={() => handleSortButtonClick("Low Price")}
-              />
+              {["Popularity", "Newest", "Oldest", "High Price", "Low Price"].map((filter) => (
+                <CategoryButtonSort
+                  key={filter}
+                  text={filter}
+                  onClick={() => handleSortButtonClick(filter)}
+                  isSelected={selectedSortFilters.includes(filter)}
+                />
+              ))}
             </StyledFilterModal.ButtonGroup>
           </StyledFilterModal.Section>
         </StyledFilterModal.Content>
