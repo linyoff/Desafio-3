@@ -106,25 +106,6 @@ const SectionHeader = styled.div`
   }
 `;
 
-const ProductGridCarousel = styled(Swiper)`
-  margin-top: 20px;
-
-  .swiper-wrapper {
-    display: flex;
-    align-items: center;
-  }
-
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .swiper-pagination-bullet {
-    background: var(--colorsDefault);
-  }
-`;
-
 export const StyleHome = {
   Container,
   Header,
@@ -139,6 +120,5 @@ export const StyleHome = {
   Categories,
   CarouselFeatProduct,
   FeaturedProducts,
-  SectionHeader,
-  ProductGridCarousel
+  SectionHeader
 }

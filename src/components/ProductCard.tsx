@@ -17,7 +17,7 @@ const ProductCard: React.FC<CardProp> = ({ product, rating }) => {
 
   const handleCardClick = () => {
     //página de detalhes do produto
-    //navigate(`/ProductDetail/${product.id}`);
+    navigate(`/product-detail/${product.id}`);
   };
 
   return (

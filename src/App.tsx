@@ -68,7 +68,6 @@ const App: React.FC = () => {
         {/*tela shopping cart*/}
         <Route path="/shopping-cart" element={<ShoppingCart />} />
 
-        {/*detalhes do produto */}
         <Route path="/product-detail/:id" element={<ProductDetail />} />
 
         {/*detalhes do produto */}

@@ -43,4 +43,16 @@ export const fetchProducts = async (): Promise<Product[]> => {
         throw error;
     }
 };
+
+export const getProductById = async (id: string): Promise<Product | null> => {
+    try {
+        const products = await fetchProducts();
+        return products.find((product) => product.id === id) || null;
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
+
+
   

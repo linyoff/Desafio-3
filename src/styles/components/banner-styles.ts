@@ -27,10 +27,12 @@ const ShopNow = styled.div`
   left: 50;
   margin-bottom: 30px;
   color: var(--colorsGreen);
-  font-weight: bold;
   gap: 12px;
 
-  a {
+  button {
+    font-weight: bold;
+    background: none;
+    border: none;
     color: var(--colorsGreen);
     text-decoration: none;
   }
