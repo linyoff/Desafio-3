@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, ShoppingCart } from "react-feather";
-import HeaderCostum from "../components/HeaderCostum";
-import { fetchProducts, Product } from "../utils/productService";
-import { StyleSearchPage } from "../styles/pages/search-page-styles";
-import { getPopularProducts } from "../utils/calcs";
-import InputField from "../components/InputField";
-
-import ProdCardSearch from "../components/ProdCardSearch";
+import HeaderCostum from "../../components/Header Costum/HeaderCostum";
+import { Product, fetchProducts } from "../../utils/productService";
+import { StyleSearchPage } from "./search-page-styles";
+import { getPopularProducts } from "../../utils/calcs";
+import InputField from "../../components/Input Field/InputField";
+import ProdCardSearch from "../../components/Product Card Search/ProdCardSearch";
 
 const SearchPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);

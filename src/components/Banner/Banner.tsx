@@ -1,8 +1,8 @@
 import React from "react";
 import { ArrowRight } from "react-feather";
 import { useNavigate } from "react-router-dom";
-import { ProductProp } from "../utils/productService";
-import { BannerStyles } from "../styles/components/banner-styles"; //import dos estilos agrupados
+import { ProductProp } from "../../utils/productService";
+import { BannerStyles } from "./banner-styles"; //import dos estilos agrupados
 
 const Banner: React.FC<ProductProp> = ({ product }) => {
   const navigate = useNavigate();

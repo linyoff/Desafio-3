@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyledHeader } from '../styles/components/header-styles';
-import BackButton from "./BackButton";
+import { StyledHeader } from './header-styles';
+import BackButton from '../Back Button/BackButton';
 
 interface HeaderProps {
     text: string;

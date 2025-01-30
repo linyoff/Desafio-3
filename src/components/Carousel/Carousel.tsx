@@ -1,10 +1,10 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import ProductCard from "../components/ProductCard";
-import { Product } from "../utils/productService";
-import { getPopularProducts } from "../utils/calcs";
-import { StyledCarousel } from "../styles/components/carousel-styles";
+import ProductCard from "../Product Card/ProductCard";
+import { Product } from "../../utils/productService";
+import { getPopularProducts } from "../../utils/calcs";
+import { StyledCarousel } from "./carousel-styles";
 
 interface CarouselProps {
     products: Product[];

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
 import { Star, MoreVertical } from 'react-feather';
-import { Product } from '../utils/productService';
-import { StyledProductCard, ProductImage, Rating } from '../styles/components/prod-card-styles';
-import { calculateRating } from '../utils/calcs';
-import { OptionsButton } from '../styles/components/prod-card-styles';
+import { Product } from '../../utils/productService';
+import { StyledProductCard, ProductImage, Rating } from './prod-card-styles';
+import { calculateRating } from '../../utils/calcs';
+import { OptionsButton } from './prod-card-styles';
 
 interface CardProp {
   product: Product;

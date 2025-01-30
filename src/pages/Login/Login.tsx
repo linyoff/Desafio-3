@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider, signInWithPopup } from "../../config/config";
+import { auth, googleProvider, signInWithPopup } from "../../../config/config";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { Mail, Lock } from 'react-feather';
-import { StyleLogin } from "../styles/pages/login-styles";
-import InputField from "../components/InputField";
-import ButtonField from "../components/ButtonField";
+import { StyleLogin } from "./login-styles";
+import InputField from "../../components/Input Field/InputField";
+import ButtonField from "../../components/Button Field/ButtonField";
 
 //interface que vai definir as props que vão atualizar o estado de autenticação
 interface LoginProps {

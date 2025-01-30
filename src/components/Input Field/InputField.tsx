@@ -1,5 +1,5 @@
 import React from "react";
-import { InputContainer } from "../styles/components/input-styles";
+import { InputContainer } from "./input-styles";
 
 interface InputFieldProps {
   type: string;

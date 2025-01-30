@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { StyleShoppCart } from "../styles/pages/shopp-cart-styles";
-import HeaderCostum from "../components/HeaderCostum";
+import { StyleShoppCart } from "./shopp-cart-styles";
+import HeaderCostum from "../../components/Header Costum/HeaderCostum";
 import { Trash2 } from "react-feather";
-import ButtonField from "../components/ButtonField";
+import ButtonField from "../../components/Button Field/ButtonField";
 
 interface CartItem {
   id: string;

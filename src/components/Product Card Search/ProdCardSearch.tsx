@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import { ProductProp } from '../utils/productService';
+import { ProductProp } from '../../utils/productService';
 import { Star, MoreVertical } from 'react-feather';
-import { calculateRating } from '../utils/calcs';
-import { ProdCardStyles } from '../styles/components/prod-search-styles';
+import { calculateRating } from '../../utils/calcs';
+import { ProdCardStyles } from './prod-search-styles';
 
 const ProdCardSearch: React.FC<ProductProp> = ({ product }) => {
 

@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Search } from 'react-feather';
-import { fetchProducts, Product } from '../utils/productService';
+import { fetchProducts, Product } from '../../utils/productService';
 import logo from '../images/Logo.png';
 import userImg from '../images/user-img.png';
-import { StyleHome } from '../styles/pages/home-styles';
-import InputField from '../components/InputField';
-import { CategoryButton } from '../components/CategoryButton';
-import Banner from '../components/Banner';
+import { StyleHome } from './home-styles';
+import InputField from '../../components/Input Field/InputField';
+import { CategoryButton } from '../../components/Category Button/CategoryButton';
+import Banner from '../../components/Banner/Banner';
 import { SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import Carousel from '../components/Carousel';
+import Carousel from '../../components/Carousel/Carousel';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();

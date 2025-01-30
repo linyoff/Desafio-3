@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchProducts, Product } from "../utils/productService";
+import { Product, fetchProducts } from "../../utils/productService";
 import { Sliders } from "react-feather";
-import ProductCard from "../components/ProductCard";
-import { StyledExploreProd } from "../styles/pages/explore-prod-styles";
-import HeaderCostum from "../components/HeaderCostum";
+import ProductCard from "../../components/Product Card/ProductCard";
+import { StyledExploreProd } from "./explore-prod-styles";
+import HeaderCostum from "../../components/Header Costum/HeaderCostum";
 import { ShoppingCart } from "react-feather";
-import FilterModal from "../components/FilterModal";
-import { getPopularProducts } from "../utils/calcs";
+import FilterModal from "../../components/Filter Modal/FilterModal";
+import { getPopularProducts } from "../../utils/calcs";
 
 const ExploreProducts: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);

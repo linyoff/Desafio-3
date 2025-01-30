@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledCatButton, StyledSortButton } from '../styles/components/category-bt-styles';
+import { StyledCatButton, StyledSortButton } from './category-bt-styles';
 
 interface CategoryButtonProps {
   text: string;

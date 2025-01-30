@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { X } from "react-feather";
-import { StyledFilterModal } from "../styles/components/filter-styles";
-import ButtonField from "./ButtonField";
-import { CategoryButton, CategoryButtonSort } from "./CategoryButton";
+import { StyledFilterModal } from "./filter-styles";
+import ButtonField from "../Button Field/ButtonField";
+import { CategoryButton, CategoryButtonSort } from "../Category Button/CategoryButton";
 
 const FilterModal: React.FC<{ 
   isModalOpen: boolean; 

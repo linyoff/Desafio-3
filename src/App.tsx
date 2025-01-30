@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/config";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import SearchPage from "./pages/SearchPage";
-import ShoppingCart from "./pages/ShoppingCart";
-import ProductDetail from "./pages/ProductDetail";
-import ExploreProducts from "./pages/ExploreProducts";
+import Login from "./pages/Login/Login";
+import Home from "./pages/Home/Home";
+import SearchPage from "./pages/Search Page/SearchPage";
+import ShoppingCart from "./pages/Shopping Cart/ShoppingCart";
+import ProductDetail from "./pages/Product Detail/ProductDetail";
+import ExploreProducts from "./pages/Explore Products/ExploreProducts";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { fetchProducts, Product, getProductById } from '../utils/productService';
-import { StyledProdDetail } from '../styles/pages/prod-detail-styles';
+import { Product, fetchProducts, getProductById } from '../../utils/productService';
+import { StyledProdDetail } from './prod-detail-styles';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ShoppingCart, Star } from 'react-feather';
+import { ShoppingCart } from 'react-feather';
 import userImg from '../images/user-img.png';
-import ButtonField from '../components/ButtonField';
-import HeaderCostum from '../components/HeaderCostum';
-import Carousel from '../components/Carousel';
+import ButtonField from '../../components/Button Field/ButtonField';
+import HeaderCostum from '../../components/Header Costum/HeaderCostum';
+import Carousel from '../../components/Carousel/Carousel';
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>(); //id da URL
@@ -73,22 +73,25 @@ const ProductDetail: React.FC = () => {
           <StyledProdDetail.Tab>Features</StyledProdDetail.Tab>
         </StyledProdDetail.Tabs>
         <StyledProdDetail.ProductImage src={product.img} alt={product.name} />
-        <StyledProdDetail.Details>{product.details}</StyledProdDetail.Details>
 
-        {/* Descomente quando precisar mostrar as reviews */}
         <StyledProdDetail.Reviews>
           <h3>Reviews ({product.reviews.length})</h3>
+
           {product.reviews.map((review) => (
             <StyledProdDetail.Review key={review.userId}>
               <StyledProdDetail.ReviewerImage src={userImg} alt={review.userName} />
 
               <StyledProdDetail.ReviewContent>
+
                 <StyledProdDetail.ReviewerName>{review.userName}</StyledProdDetail.ReviewerName>
+
                 <StyledProdDetail.Stars>
                   {'★'.repeat(review.rating)}
                 </StyledProdDetail.Stars>
+
                 <StyledProdDetail.ReviewText>{review.comment}</StyledProdDetail.ReviewText>
                 <StyledProdDetail.PostedAt>{new Date(review.postedAt).toLocaleDateString()}</StyledProdDetail.PostedAt>
+
               </StyledProdDetail.ReviewContent>
 
             </StyledProdDetail.Review>
@@ -98,7 +101,7 @@ const ProductDetail: React.FC = () => {
 
       <StyledProdDetail.FeaturedProducts>
         <StyledProdDetail.SectionHeader>
-          <h3>Featured Products</h3>
+          <h3>Another Product</h3>
           <button onClick={handleSeeAll}>See All</button>
         </StyledProdDetail.SectionHeader>
         <Carousel

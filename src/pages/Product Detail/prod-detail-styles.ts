@@ -9,12 +9,16 @@ export const StyledProdDetail = {
     Content: styled.div`padding: 0 24px;`,
 
     Price: styled.p`
-        color: green;
+        color: var(--colorsGreen);
         font-weight: bold;
+        font-size: 16px;
+        margin-top: 18px;
     `,
 
     Title: styled.h1`
-        font-size: 24px;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: 6px;
     `,
 
     Tabs: styled.div`
@@ -23,12 +27,11 @@ export const StyledProdDetail = {
     `,
 
     Tab: styled.button<{ active?: boolean }>`
+        font-weight: 400;
+        font-size: 16px;
         background: none;
         border: none;
-        font-weight: bold;
-        font-size: 16px;
-        color: ${(props) => (props.active ? 'black' : 'gray')};
-        margin-right: 16px;
+        margin-right: 34px;
         cursor: pointer;
     `,
 
@@ -45,6 +48,12 @@ export const StyledProdDetail = {
 
     Reviews: styled.div`
         margin: 24px 0;
+
+        h3{
+            font-size: 16px;
+            font-weight: 400;
+            margin: 25px 0;
+        }
     `,
 
     Review: styled.div`
@@ -59,22 +68,25 @@ export const StyledProdDetail = {
         margin-right: 12px;
     `,
 
-    ReviewContent: styled.div``,
+    ReviewContent: styled.div`font-weight: 400;`,
 
     ReviewerName: styled.p`
-        font-weight: bold;
+        font-size: 16px;
     `,
+
     Stars: styled.div`
         color: gold;
         margin: 4px 0;
     `,
 
     ReviewText: styled.p`
-        color: gray;
+        font-weight: 400;
+        font-size: 14px;
     `,
 
     PostedAt: styled.p`
         font-size: 12px;
+        margin: 4px 0;
         color: lightgray;
     `,
 

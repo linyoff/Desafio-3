@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { StyledBackButton } from "../styles/components/back-button-styles";
+import { StyledBackButton } from "./back-button-styles";
 import { ChevronLeft } from "react-feather";
 
 const BackButton: React.FC = () => {

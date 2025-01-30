@@ -1,24 +1,10 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 16px;
+  padding: 16px 24px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
-`;
-
-const BackButton = styled.button`
-  border: none;
-  background: none;
-  font-size: 18px;
-  cursor: pointer;
 `;
 
 const TrashButton = styled.button`
@@ -66,8 +52,7 @@ const QuantityContainer = styled.div`
 `;
 
 const QuantityButton = styled.button`
-  border: none;
-  background: #f2f2f2;
+  border: 0.2px solid var(--);
   padding: 4px 8px;
   border-radius: 4px;
   cursor: pointer;
@@ -89,13 +74,11 @@ const RemoveButton = styled.button`
 const Footer = styled.div`
   margin-top: auto;
   padding-top: 16px;
-  border-top: 1px solid #ddd;
 `;
 
 const TotalInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
 `;
 
 const TotalItems = styled.span`
@@ -110,8 +93,6 @@ const TotalPrice = styled.span`
 
 export const StyleShoppCart = {
     Container,
-    Header,
-    BackButton,
     TrashButton,
     Title,
     CartItemContainer,
