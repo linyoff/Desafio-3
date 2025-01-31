@@ -21,7 +21,7 @@ const Title = styled.h1`
 const CartItemContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin: 16px;
 `;
 
 const ItemImage = styled.img`
@@ -37,13 +37,14 @@ const ItemDetails = styled.div`
 
 const ItemName = styled.h3`
   font-size: 16px;
-  margin: 0;
+  margin: 0 0 5px 0;
+  font-weight: 400;
 `;
 
 const ItemPrice = styled.p`
   font-size: 14px;
-  margin: 4px 0;
-  color: #555;
+  margin: 0 0 16px 0;
+  font-weight: bold;
 `;
 
 const QuantityContainer = styled.div`
@@ -52,24 +53,31 @@ const QuantityContainer = styled.div`
 `;
 
 const QuantityButton = styled.button`
-  border: 0.2px solid var(--);
-  padding: 4px 8px;
-  border-radius: 4px;
+  border: 1px solid var(--colorsGreyDark_1);
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Quantity = styled.span`
-  margin: 0 8px;
-  font-size: 14px;
+  margin: 0 16px;
+  font-size: 16px;
 `;
 
 const RemoveButton = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  font-size: 18px;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
 `;
+
 
 const Footer = styled.div`
   margin-top: auto;
@@ -91,6 +99,13 @@ const TotalPrice = styled.span`
   font-weight: bold;
 `;
 
+const EmptyMessage =  styled.p`
+    text-align: center;
+    font-size: 18px;
+    color: var(--colorsGreyDark_2);
+    font-weight: bold;
+  `;
+
 export const StyleShoppCart = {
     Container,
     TrashButton,
@@ -107,5 +122,6 @@ export const StyleShoppCart = {
     Footer,
     TotalInfo,
     TotalItems,
-    TotalPrice
+    TotalPrice,
+    EmptyMessage
 }

@@ -44,6 +44,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
     }
 };
 
+//irá buscar o produto pelo id
 export const getProductById = async (id: string): Promise<Product | null> => {
     try {
         const products = await fetchProducts();

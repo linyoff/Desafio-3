@@ -1,118 +1,142 @@
 import styled from 'styled-components';
 
 export const StyledProdDetail = {
-    Container: styled.div`
-        font-family: Arial, sans-serif;
-        padding: 16px 0;
-    `,
+  Container: styled.div`
+    font-family: Arial, sans-serif;
+    padding: 16px 0;
+  `,
 
-    Content: styled.div`padding: 0 24px;`,
+  Price: styled.p`
+    color: var(--colorsGreen);
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 18px;
+  `,
 
-    Price: styled.p`
-        color: var(--colorsGreen);
-        font-weight: bold;
-        font-size: 16px;
-        margin-top: 18px;
-    `,
+  Title: styled.h1`
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 6px;
+  `,
 
-    Title: styled.h1`
-        font-size: 28px;
-        font-weight: bold;
-        margin-top: 6px;
-    `,
+  Tabs: styled.div`
+    display: flex;
+    margin: 16px 0;
+  `,
+  Tab: styled.button<{ active?: boolean }>`
+  font-weight: 400;
+  font-size: 16px;
+  background: none;
+  border: none;
+  margin-right: 34px;
+  cursor: pointer;
+  position: relative;
 
-    Tabs: styled.div`
-        display: flex;
-        margin: 16px 0;
-    `,
+  ${(props) =>
+    props.active &&
+    `
+    &::after {
+      content: "";
+      position: absolute; 
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40%;
+      height: 3px;
+      background-color: var(--colorsGreen);
+      border-radius: 5px;
+    }
+  `}
+`,
 
-    Tab: styled.button<{ active?: boolean }>`
-        font-weight: 400;
-        font-size: 16px;
-        background: none;
-        border: none;
-        margin-right: 34px;
-        cursor: pointer;
-    `,
+  ProductImage: styled.img`
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  `,
 
-    ProductImage: styled.img`
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-    `,
+  Overview: styled.div`
+    
+  `,
 
-    Details: styled.p`
-        margin: 16px 0;
-        color: gray;
-    `,
+  Features: styled.div`
+    padding: 0 24px;
+    min-height: 50vh;
+  `,
 
-    Reviews: styled.div`
-        margin: 24px 0;
+  Details: styled.p`
+    font-size: 14px;
+  `,
 
-        h3{
-            font-size: 16px;
-            font-weight: 400;
-            margin: 25px 0;
-        }
-    `,
+  Reviews: styled.div`
+    margin: 24px 0;
 
-    Review: styled.div`
-        display: flex;
-        margin-bottom: 16px;
-    `,
+    h3 {
+      font-size: 16px;
+      font-weight: 400;
+      margin: 25px 0;
+    }
+  `,
 
-    ReviewerImage: styled.img`
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 12px;
-    `,
+  Review: styled.div`
+    display: flex;
+    margin-bottom: 16px;
+  `,
 
-    ReviewContent: styled.div`font-weight: 400;`,
+  ReviewerImage: styled.img`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+  `,
 
-    ReviewerName: styled.p`
-        font-size: 16px;
-    `,
+  ReviewContent: styled.div`
+    font-weight: 400;
+  `,
 
-    Stars: styled.div`
-        color: gold;
-        margin: 4px 0;
-    `,
+  ReviewerName: styled.p`
+    font-size: 16px;
+  `,
 
-    ReviewText: styled.p`
-        font-weight: 400;
-        font-size: 14px;
-    `,
+  Stars: styled.div`
+    color: gold;
+    margin: 4px 0;
+  `,
 
-    PostedAt: styled.p`
-        font-size: 12px;
-        margin: 4px 0;
-        color: lightgray;
-    `,
+  ReviewText: styled.p`
+    font-weight: 400;
+    font-size: 14px;
+  `,
 
-    FeaturedProducts: styled.section`
-        margin-top: 20px;
-        padding: 24px;
-        background-color: var(--colorsGreyLight_1);
-        overflow: hidden;
-    `,
+  PostedAt: styled.p`
+    font-size: 12px;
+    margin: 4px 0;
+    color: lightgray;
+  `,
 
-    SectionHeader: styled.div`
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  FeaturedProducts: styled.section`
+    margin-top: 20px;
+    padding: 24px;
+    background-color: var(--colorsGreyLight_1);
+    overflow: hidden;
+  `,
 
-        h3 {
-            font-size: 18px;
-            font-weight: 400;
-        }
+  SectionHeader: styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-        button {
-            background: none;
-            border: none;
-            font-size: 14px;
-            color: var(--colorsGreyDark_1);
-            text-decoration: none;
-        }
-    `,
-}
+    h3 {
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    button {
+      background: none;
+      border: none;
+      font-size: 14px;
+      color: var(--colorsGreyDark_1);
+      text-decoration: none;
+    }
+  `,
+};
