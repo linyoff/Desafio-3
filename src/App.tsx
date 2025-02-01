@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/config";
-import Login from "./components/Login";
-import Home from "./components/Home";
+import Login from "./pages/Login/Login";
+import Home from "./pages/Home/Home";
+import SearchPage from "./pages/Search Page/SearchPage";
+import ShoppingCart from "./pages/Shopping Cart/ShoppingCart";
+import ProductDetail from "./pages/Product Detail/ProductDetail";
+import ExploreProducts from "./pages/Explore Products/ExploreProducts";
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -32,7 +36,10 @@ const App: React.FC = () => {
     <Router>
       <Routes>
         {/*tela de login*/}
-        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/Login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+
+        {/*redirecionando para tela de login*/}
+        <Route path="*" element={<Navigate to="/login" replace />} />
 
         {/*tela home*/}
         <Route
@@ -46,8 +53,26 @@ const App: React.FC = () => {
           }
         />
 
-        {/*redirecionando para tela de login*/}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        {/*tela search*/}
+        <Route
+          path="/search-page"
+          element={
+            isAuthenticated ? (
+              <SearchPage />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+        />
+
+        {/*tela shopping cart*/}
+        <Route path="/shopping-cart" element={<ShoppingCart />} />
+
+        <Route path="/product-detail/:id" element={<ProductDetail />} />
+
+        {/*detalhes do produto */}
+        <Route path="/explore-products" element={<ExploreProducts />} />
+
       </Routes>
     </Router>
   );
