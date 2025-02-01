@@ -5,10 +5,19 @@ import { Menu } from 'react-feather';
 const Container = styled.div`
   background-color: var(--colorsWhite);
   color: var(--colorsDefault);
+  @media (min-width: 640px) {
+    padding: 40px;
+  }
 `;
 
 const Header = styled.header`
   padding: 30px 20px 10px;
+  @media (min-width: 640px) {
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 `;
 
 const Nav = styled.nav`
@@ -19,11 +28,17 @@ const Nav = styled.nav`
 
 const MenuIcon = styled(Menu)`
   cursor: pointer;
+  @media (min-width: 640px) {
+    display: none;
+  }
 `;
 
 const Logo = styled.img`
   height: 30px;
   margin: 0 10px;
+  @media (min-width: 640px) {
+    height: 50px;
+  }
 `;
 
 const Avatar = styled.img`
@@ -35,6 +50,12 @@ const Avatar = styled.img`
 
 const ContainerHead = styled.main`
   padding: 0 24px;
+  @media (min-width: 640px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+  }
 `;
 
 const Greeting = styled.h1`
@@ -56,47 +77,52 @@ const ContainerProducts = styled.div`
   padding: 20px;
   margin-top: 25px;
   overflow: hidden;
+  @media (min-width: 640px) {
+    padding: 40px;
+  }
 `;
 
 const Categories = styled.div`
   display: flex;
   gap: 10px;
+  @media (min-width: 640px) {
+    justify-content: center;
+  }
 `;
 
 const CarouselFeatProduct = styled(Swiper)`
   margin-top: 20px;
-
   .swiper-wrapper {
     display: flex;
     align-items: center;
   }
-
   .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
   .swiper-pagination-bullet {
     background: var(--colorsDefault);
+  }
+  @media (min-width: 640px) {
+    .swiper-slide {
+      max-width: 400px;
+    }
   }
 `;
 
 const FeaturedProducts = styled.section`
   margin-top: 20px;
-
 `;
 
 const SectionHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   h3 {
     font-size: 18px;
     font-weight: 400;
   }
-
   button {
     background: none;
     border: none;
@@ -121,4 +147,4 @@ export const StyleHome = {
   CarouselFeatProduct,
   FeaturedProducts,
   SectionHeader
-}
+};

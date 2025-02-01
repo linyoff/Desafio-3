@@ -48,19 +48,26 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
 
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
-      setIsAuthenticated(true);
-
-      if (auth.currentUser?.email) {
-        const userEmail = auth.currentUser.email;
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+  
+      if (user?.email) {
+        setIsAuthenticated(true);
+        const userEmail = user.email;
         const userUsername = userEmail.split("@")[0];
-        navigate("/home", { state: { username: userUsername } });
+  
+        // Aguarde um pequeno tempo antes de navegar
+        setTimeout(() => {
+          navigate("/home", { state: { username: userUsername } });
+        }, 500); // Delay de 500ms para garantir que os dados sejam sincronizados
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Erro ao fazer login com o Google:", error);
       setError("Erro ao fazer login com o Google. Tente novamente.");
     }
   };
+  
+  
 
   return (
     <StyleLogin.LoginPage>
@@ -90,7 +97,7 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
 
         <ButtonField typeButton="submit" text="Login" />
 
-        <StyleLogin.GoogleButton onClick={handleGoogleSignIn}>
+        <StyleLogin.GoogleButton type="button" onClick={handleGoogleSignIn}>
           <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Icon" />
           Sign in with Google
         </StyleLogin.GoogleButton>

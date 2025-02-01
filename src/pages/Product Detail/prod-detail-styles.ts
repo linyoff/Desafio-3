@@ -23,7 +23,7 @@ export const StyledProdDetail = {
     display: flex;
     margin: 16px 0;
   `,
-  Tab: styled.button<{ active?: boolean }>`
+  Tab: styled.button<{ $active?: boolean }>`
   font-weight: 400;
   font-size: 16px;
   background: none;
@@ -33,7 +33,7 @@ export const StyledProdDetail = {
   position: relative;
 
   ${(props) =>
-    props.active &&
+    props.$active &&
     `
     &::after {
       content: "";

@@ -80,8 +80,8 @@ const ProductDetail: React.FC = () => {
           <StyledProdDetail.Price>USD {product.price}</StyledProdDetail.Price>
           <StyledProdDetail.Title>{product.name}</StyledProdDetail.Title>
           <StyledProdDetail.Tabs>
-            <StyledProdDetail.Tab active={activeTab === 'overview'} onClick={() => handleTabClick('overview')}>Overview</StyledProdDetail.Tab>
-            <StyledProdDetail.Tab active={activeTab === 'features'} onClick={() => handleTabClick('features')}>Features</StyledProdDetail.Tab>
+            <StyledProdDetail.Tab $active={activeTab === 'overview'} onClick={() => handleTabClick('overview')}>Overview</StyledProdDetail.Tab>
+            <StyledProdDetail.Tab $active={activeTab === 'features'} onClick={() => handleTabClick('features')}>Features</StyledProdDetail.Tab>
           </StyledProdDetail.Tabs>
         </div>
 
