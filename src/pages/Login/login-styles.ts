@@ -11,7 +11,7 @@ const LoginPage = styled.div`
   color: var(--colorsWhite);
   min-height: 100vh;
   background: linear-gradient(rgba(18, 80, 56, 1), rgba(22, 199, 130, 0)),
-    url('/src/images/background.png') center/cover no-repeat;
+    url('./src/images/background.png') center/cover no-repeat;
 `;
 
 const TextHeader = styled.div`
