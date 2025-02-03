@@ -10,14 +10,16 @@ import FilterModal from "../../components/Filter Modal/FilterModal";
 import { getPopularProducts } from "../../utils/calcs";
 
 const ExploreProducts: React.FC = () => {
+
+  //variaveis de controle de estado
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [isFilterVisible, setFilterVisible] = useState(false);
 
   const navigate = useNavigate();
-
   const handleCart = () => navigate("/shopping-cart");
 
+  //alterar estado de visibilidade do filtro
   const toggleFilterModal = () => {
     setFilterVisible(!isFilterVisible);
   };
@@ -50,7 +52,6 @@ const ExploreProducts: React.FC = () => {
     setFilteredProducts(updatedProducts);
   };
   
-
   useEffect(() => {
     const loadProducts = async () => {
       try {

@@ -6,16 +6,5 @@ export const StyledCarousel = styled(Swiper)`
 
   .swiper-wrapper {
     display: flex;
-    align-items: center;
-  }
-
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .swiper-pagination-bullet {
-    background: var(--colorsDefault);
   }
 `;

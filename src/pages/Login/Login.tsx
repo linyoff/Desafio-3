@@ -19,13 +19,16 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const navigate = useNavigate();
 
+  //autenticação com email e senha
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
     try {
       if (isSignUp) {
+        //verifica se esta na tela de criar usuário e chama funcao para criar
         await createUserWithEmailAndPassword(auth, email, password);
       } else {
+        //se não estiver na tela de criar usuário faz o login normalmente
         await signInWithEmailAndPassword(auth, email, password);
       }
       setIsAuthenticated(true);
@@ -56,10 +59,10 @@ const Login: React.FC<LoginProps> = ({ setIsAuthenticated }) => {
         const userEmail = user.email;
         const userUsername = userEmail.split("@")[0];
   
-        // Aguarde um pequeno tempo antes de navegar
+        //aguarda um tempo antes de navegar
         setTimeout(() => {
           navigate("/home", { state: { username: userUsername } });
-        }, 500); // Delay de 500ms para garantir que os dados sejam sincronizados
+        }, 500); //delay de 500ms para garantir que os dados sincronizaram
       }
     } catch (error: any) {
       console.error("Erro ao fazer login com o Google:", error);

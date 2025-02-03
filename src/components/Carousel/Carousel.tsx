@@ -19,13 +19,6 @@ const Carousel: React.FC<CarouselProps> = ({ products }) => {
         <StyledCarousel
             spaceBetween={22} //espaço entre os slides
             pagination={{ clickable: true }}
-            centeredSlides={true}  //centraliza o conteudo
-            slidesPerView="auto" //ajusta a largura dos slides
-            breakpoints={{
-                640: { slidesPerView: 2, spaceBetween: 22 }, //para telas menores
-                1024: { slidesPerView: 3, spaceBetween: 22 }, //para tablets
-                1440: { slidesPerView: 4, spaceBetween: 32 }, //para desktops
-            }}
             modules={[Pagination]} >
             {popular.map((product) => (
                 <SwiperSlide key={product.id}>

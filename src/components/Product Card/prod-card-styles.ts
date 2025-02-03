@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+                                        //variavel para verificar se tem a avaliacao
 export const StyledProductCard = styled.div<{ $rating: boolean }>`
   width: 160px;
   position: relative;

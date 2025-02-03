@@ -7,22 +7,22 @@ import userImg from '../../images/user-img.png';
 import ButtonField from '../../components/Button Field/ButtonField';
 import HeaderCostum from '../../components/Header Costum/HeaderCostum';
 import Carousel from '../../components/Carousel/Carousel';
-import { useCart } from '../../context/CartContext'; // Importando o contexto do carrinho
+import { useCart } from '../../context/CartContext'; //contexto do carrinho
 
 const ProductDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // id da URL
-  const [product, setProduct] = useState<Product | null>(null); // armazena os dados do produto
-  const [loading, setLoading] = useState(true); // mostrar carregamento
+  const { id } = useParams<{ id: string }>(); //id da URL
+  const [product, setProduct] = useState<Product | null>(null); //armazena os dados do produto
+  const [loading, setLoading] = useState(true); //mostrar carregamento
   const [products, setProducts] = useState<Product[]>([]);
-  const [activeTab, setActiveTab] = useState<'overview' | 'features'>('overview'); // Estado para a aba ativa
+  const [activeTab, setActiveTab] = useState<'overview' | 'features'>('overview'); //estado para a aba ativa
 
-  const { addToCart } = useCart(); // função addToCart do contexto
+  const { addToCart } = useCart(); //função addToCart do contexto
 
   useEffect(() => {
     const fetchProduct = async () => {
       if (id) {
         setLoading(true);
-        const data = await getProductById(id); // buscando produto pelo id
+        const data = await getProductById(id); //buscando produto pelo id
         setProduct(data);
         setLoading(false);
       }
@@ -35,7 +35,7 @@ const ProductDetail: React.FC = () => {
       try {
         const data = await fetchProducts();
         if (data.length > 0) {
-          setProducts(data); // armazenando os dados obtidos
+          setProducts(data); //armazenando os dados obtidos
         }
       } catch (error) {
         console.error("Erro ao carregar produtos:", error);
@@ -59,7 +59,7 @@ const ProductDetail: React.FC = () => {
 
   const handleAddToCart = () => {
     if (product) {
-      // add o produto ao carrinho com quantidade inicial de 1
+      //add o produto ao carrinho com quantidade inicial de 1
       addToCart({ produto: product, quantity: 1 });
     }
   };

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+                                         //variavel para definir se o input é clicavel ou não
 export const InputContainer = styled.div<{ $clickable: boolean }>`
   position: relative;
   margin-top: 20px;

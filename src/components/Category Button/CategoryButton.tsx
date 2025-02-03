@@ -6,6 +6,7 @@ interface CategoryButtonProps {
   onClick?: () => void;
 }
 
+//primeiro botao de categorias de headset e headphones 
 export const CategoryButton: React.FC<CategoryButtonProps & { isSelected?: boolean }> = ({
   text,
   onClick,
@@ -16,7 +17,7 @@ export const CategoryButton: React.FC<CategoryButtonProps & { isSelected?: boole
   </StyledCatButton>
 );
 
-
+//botoes usados no filtro de pesquisa
 export const CategoryButtonSort: React.FC<CategoryButtonProps & { isSelected?: boolean }> = ({
   text,
   onClick,

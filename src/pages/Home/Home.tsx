@@ -102,14 +102,10 @@ const Home: React.FC = () => {
             pagination={{ clickable: true }}
             centeredSlides={true}  //centraliza o conteudo
             slidesPerView="auto" //ajusta a largura dos slides
-            breakpoints={{
-              640: { slidesPerView: 1.5, spaceBetween: 20 },
-              1024: { slidesPerView: 2, spaceBetween: 20 },
-              1440: { slidesPerView: 3, spaceBetween: 30 },
-            }}
             modules={[Pagination]}  //módulo de paginação
           >
-            {filteredProducts.map((product) => (
+            {/* mostrar apenas 3 produtos */}
+            {filteredProducts.slice(0, 3).map((product) => (
               <SwiperSlide key={product.id}>
                 <Banner product={product} />
               </SwiperSlide>

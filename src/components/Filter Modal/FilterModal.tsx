@@ -5,17 +5,20 @@ import ButtonField from "../Button Field/ButtonField";
 import { CategoryButton, CategoryButtonSort } from "../Category Button/CategoryButton";
 
 const FilterModal: React.FC<{ 
-  isModalOpen: boolean; 
+  isModalOpen: boolean; //variavel para verificar que esta aberto o filtro
   onClose: () => void;
+  //funcao para aplicar os filtros selecionados
   onApplyFilters: (filters: { sort: string[]; categories: string[] }) => void; 
 }> = ({ isModalOpen, onClose, onApplyFilters }) => {
 
+  //variaveis de estado
   const [selectedSortFilters, setSelectedSortFilters] = useState<string[]>([]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
+  //organizar os filtros selecionados
   const handleSortButtonClick = (text: string) => {
     setSelectedSortFilters((prevFilters) => {
-      let updatedFilters = [...prevFilters];
+      let updatedFilters = [...prevFilters]; //spread operator pra criar copia da array
   
       //se newest for selecionado remove oldest
       if (text === "Newest") {
@@ -37,15 +40,16 @@ const FilterModal: React.FC<{
     });
   };
   
-
+  //organizar as categorias selecionadas
   const handleCategoryButtonClick = (category: string) => {
     setSelectedCategories((prevCategories) =>
       prevCategories.includes(category)
-        ? prevCategories.filter((cat) => cat !== category)
-        : [...prevCategories, category]
+        ? prevCategories.filter((cat) => cat !== category) //remove se já estiver selecionado
+        : [...prevCategories, category] //adiciona se não estiver selecionado
     );
   };
 
+  //aplica os filtros 
   const applyFilters = () => {
     const appliedFilters = {
       sort: selectedSortFilters,

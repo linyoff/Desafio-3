@@ -23,6 +23,8 @@ export const StyledProdDetail = {
     display: flex;
     margin: 16px 0;
   `,
+  //verifica se o botao esta ativo por meio da var active
+  //$active pois $ indica que ela é usada apenas internamente no estilo
   Tab: styled.button<{ $active?: boolean }>`
   font-weight: 400;
   font-size: 16px;

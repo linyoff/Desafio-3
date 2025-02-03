@@ -31,13 +31,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   //adicionar item ao carrinho
   const addToCart = (item: CartItem) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find((i) => i.produto.id === item.produto.id);
+      const existingItem = prevItems.find((i) => i.produto.id === item.produto.id); //verifica se o item já existe no carrinho
       if (existingItem) {
         return prevItems.map((i) =>
-          i.produto.id === item.produto.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.produto.id === item.produto.id ? { ...i, quantity: i.quantity + 1 } : i //se já existir aumenta a quantidade
         );
       }
-      return [...prevItems, { ...item, quantity: 1 }];
+      return [...prevItems, { ...item, quantity: 1 }]; //se não existir só adiciona com quantidade de 1
     });
   };
 

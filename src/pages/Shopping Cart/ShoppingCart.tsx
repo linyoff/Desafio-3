@@ -6,8 +6,9 @@ import ButtonField from "../../components/Button Field/ButtonField";
 import { useCart } from "../../context/CartContext";
 
 const ShoppingCart: React.FC = () => {
-  const { cartItems, incrementQuantity, decrementQuantity, removeItem, clearCart } = useCart(); // Obtendo funções do contexto
+  const { cartItems, incrementQuantity, decrementQuantity, removeItem, clearCart } = useCart(); //obtendo funções do contexto
 
+  //funcao que calcula valor total no carrinho
   const totalPrice = cartItems.reduce(
     (sum, item) => sum + item.produto.price * item.quantity,
     0
@@ -27,23 +28,31 @@ const ShoppingCart: React.FC = () => {
       ) : (
         cartItems.map((item) => (
           <StyleShoppCart.CartItemContainer key={item.produto.id}>
+
             <StyleShoppCart.ItemImage src={item.produto.img} alt={item.produto.name} />
+
             <StyleShoppCart.ItemDetails>
               <StyleShoppCart.ItemName>{item.produto.name}</StyleShoppCart.ItemName>
               <StyleShoppCart.ItemPrice>USD {item.produto.price}</StyleShoppCart.ItemPrice>
+
               <StyleShoppCart.QuantityContainer>
                 <StyleShoppCart.QuantityButton onClick={() => decrementQuantity(item.produto.id)}>
                   <Minus size={20}/>
                 </StyleShoppCart.QuantityButton>
+
                 <StyleShoppCart.Quantity>{item.quantity}</StyleShoppCart.Quantity>
                 <StyleShoppCart.QuantityButton onClick={() => incrementQuantity(item.produto.id)}>
                   <Plus size={20}/>
                 </StyleShoppCart.QuantityButton>
+
                 <StyleShoppCart.RemoveButton onClick={() => removeItem(item.produto.id)}>
                   <Trash2 color="var(--colorsGreyDark_1)" size={20}/>
                 </StyleShoppCart.RemoveButton>
+
               </StyleShoppCart.QuantityContainer>
+
             </StyleShoppCart.ItemDetails>
+
           </StyleShoppCart.CartItemContainer>
         ))
       )}

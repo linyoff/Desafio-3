@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
 export const StyledFilterModal = {
+    //overlay para deixar parecido com sombreado abaixo do modal de filtro
     Overlay: styled.div`
-        position: fixed;
+        position: fixed; //fixo na tela cobrindo toda a área visivel
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         background: rgba(0, 0, 0, 0.5);
-        z-index: 999;
+        z-index: 999; //coloca acima de outros elementos na tela.
         display: block; 
     `,
 
@@ -16,20 +17,20 @@ export const StyledFilterModal = {
         position: fixed;
         box-sizing: border-box;
         bottom: 0;
-        border-top-left-radius: 50px;
+        border-top-left-radius: 50px; //arredonda o canto superior
         border-top-right-radius: 50px;
         left: 0;
         right: 0;
         height: 50%;
         background: white;
-        z-index: 1000;
+        z-index: 1000; //modal acima do overlay.
         padding: 24px;
-        transform: translateY(100%);
-        animation: slideIn 0.4s forwards;
+        transform: translateY(100%); //posiciona o modal fora da tela
+        animation: slideIn 0.4s forwards; //animação
 
         @keyframes slideIn {
             to {
-                transform: translateY(0);
+                transform: translateY(0); //faz o modal deslizar até a posição final
             }
         }
     `,
